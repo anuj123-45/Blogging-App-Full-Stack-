@@ -49,14 +49,15 @@ function Header(props) {
               </Tabs>
             </Box>
           )}
-          <input
+         
+          <Link to="/search"> <input
             type="search"
             className="form-control rounded "
             placeholder="Search Category..."
             aria-label="Search"
             aria-describedby="search-addon"
             onKeyUp={(e)=>props.searchCat(e.target.value)}
-          />
+          /></Link>
           <Box display="flex" marginLeft="auto">
          
             {!isLoggedIn && (

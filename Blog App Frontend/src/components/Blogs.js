@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Blog from "./Blog";
 
-function Blogs() {
+function Blogs({ arr }) {
   const [blogs, setBlogs] = useState();
   const sendRequest = async () => {
     const res = await axios
@@ -16,22 +16,38 @@ function Blogs() {
     sendRequest().then((data) => setBlogs(data.blogs));
   }, []);
 
-  console.log("blogs data",blogs);
- 
+  console.log("blogs data", blogs);
+  
+  console.log("Pat",arr);
+
   return (
+
     <div>
-      {blogs &&
-        blogs.map((blog, index) => (
-          <Blog
-            id={blog._id}
-            isUser={localStorage.getItem("userId") === blog.user._id}
-            title={blog.title}
-            content={blog.content}
-            image={blog.image}
-            userName={blog.userIp}
-          />
-        ))}
-    </div>
+      
+       {blogs &&
+      blogs.map((blog, index) => (
+        <Blog
+          id={blog._id}
+          isUser={localStorage.getItem("userId") === blog.user._id}
+          title={blog.title}
+          content={blog.content}
+          image={blog.image}
+          userName={blog.userIp}
+        />
+      ))}
+        {localStorage.setItem("Blogs Details", JSON.stringify(blogs))}
+
+
+
+ 
+
+  </div>
+
+
+
+
+
+
   );
 }
 

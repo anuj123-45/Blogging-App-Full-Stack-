@@ -6,9 +6,10 @@ import UserBlogs from "./components/UserBlogs";
 import BlogDetail from "./components/BlogDetail";
 import AddBlog from "./components/AddBlog";
 import React, { useEffect, useState } from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { authActions } from "./store";
+import BlogSearch from './components/BlogSearch';
 
 function App() {
 
@@ -25,7 +26,8 @@ function App() {
   }, [dispatch]);
 
 
-  const [blogTitle, setBlogTitle] = useState((JSON.parse(localStorage.getItem("Blogs Details"))));
+  const [blogTitle, setBlogTitle] = useState([]);
+  //(JSON.parse(localStorage.getItem("Blogs Details")))
   var Result=blogTitle;
  
  function searchCat(val) {
@@ -51,19 +53,50 @@ function App() {
 
 
         <Routes>
+
+
+    
           {!isLoggedIn ? (
             <>
               <Route path="/auth" element={<Auth />} />
-              <Route path="/" element={<Blogs />} />
+            
+              
+              
+             
+              {Result.length>0 ? (
+                 <>
+                  <Route path="/search" element={<BlogSearch arr={Result}/>} />
+                 </>
+              ):
+
+              (
+
+                <>
+                
+                <Route path="/" element={<Blogs />} />
+                </>
+              )
+              
+            }
+      
+                
+ 
+
+
             </>
           ) : (
             <>
-              <Route path="/" element={<Blogs />} />
+              <Route path="/" element={<Blogs arr={Result}/>} />
               <Route path="/blogs/add" element={<AddBlog />} />
               <Route path="/myBlogs" element={<UserBlogs arr={Result} />} />
               <Route path="/myBlogs/:id" element={<BlogDetail />} />
             </>
           )}
+         
+        
+
+
+
         </Routes>
 
 

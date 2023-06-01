@@ -27,7 +27,7 @@ const Blog = ({ title, content, image, userName, isUser, id }) => {
     const res = await axios
       .delete(`http://localhost:8000/api/blog/${id}`)
       .catch((err) => console.log(err));
-
+ 
     const data = res.data;
     return data;
   };
@@ -43,9 +43,10 @@ const Blog = ({ title, content, image, userName, isUser, id }) => {
           width: "50%",
           margin: "auto",
           marginTop: 2,
+          borderRadius:"25px"         ,
           padding: 2,
           boxShadow: "5px 5px 10px #ccc",
-          ":hover": { boxShadow: "10px 10px 20px #ccc" },
+          ":hover": { boxShadow: "10px 10px 20px #abc" },
         }}
       >
         {isUser && (
@@ -78,7 +79,7 @@ const Blog = ({ title, content, image, userName, isUser, id }) => {
           <hr />
           <br />
           <Typography variant="body2" color="text.secondary">
-            <b>{userName}</b> {": "}
+            <h3 style={{fontWeight:"1000px"}}>{userName}</h3> {": "}
            
             {content}
           </Typography>

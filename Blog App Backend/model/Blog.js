@@ -21,6 +21,11 @@ const blogSchema = new Schema({
     required: true,
   },
 
+  userIp: {
+    type: String,
+    required: true,
+  },
+
 
 });
 

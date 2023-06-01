@@ -40,8 +40,7 @@ const Auth = () => {
 
       console.log("Name",inputs.name);
       localStorage.setItem("userImp",inputs.email)
-   0   
-
+   
     const data = await res.data;
     return data;
   };
