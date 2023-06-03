@@ -10,32 +10,9 @@ const BlogSearch=({arr})=>{
 
 
 
-
-
-       {arr.length==0 ? (
-         <>
-             {
-        JSON.parse(localStorage.getItem("Blogs Details")).map((blog, index) => (
-           <Blog
-             id={blog._id}
-             isUser={localStorage.getItem("userId") === blog.user._id}
-             title={blog.title}
-             content={blog.content}
-             image={blog.image}
-             userName={blog.userIp}
-           />
-         ))}
-          
- 
- 
- 
- 
- 
-         </>
-       ) : (
-         <>
- 
-           {arr.map((blog, index) => (
+   {arr.length>0 ? (<>
+   
+    {arr.map((blog, index) => (
              <Blog
                id={blog._id}
                isUser={localStorage.getItem("userId") === blog.user._id}
@@ -55,12 +32,16 @@ const BlogSearch=({arr})=>{
            }
  
  
- 
- 
- 
-         </>
-       )}
- 
+   
+   </>):(<>
+   
+   <h1>No results found</h1>
+   
+   </>)}
+
+      
+        
+
  
  
  

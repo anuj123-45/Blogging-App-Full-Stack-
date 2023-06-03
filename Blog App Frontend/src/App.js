@@ -10,12 +10,13 @@ import { Route, Routes } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { authActions } from "./store";
 import BlogSearch from './components/BlogSearch';
+import axios from "axios";
+import ErrorPage from "./components/ErrorPage";
 
 function App() {
 
 
- 
-
+  
 
   const dispatch = useDispatch();
   const isLoggedIn = useSelector((state) => state.isLoggedIn);
@@ -26,19 +27,38 @@ function App() {
   }, [dispatch]);
 
 
-  const [blogTitle, setBlogTitle] = useState([]);
-  //(JSON.parse(localStorage.getItem("Blogs Details")))
+
+
+  function parseJson(){
+    try {
+      return JSON.parse(localStorage.getItem("Blogs Details"));
+    } catch(ex){
+      return "";
+    }
+}
+
+
+  const [blogTitle, setBlogTitle] =  useState(parseJson());
+  console.log("Blogs",blogTitle);
+  //(JSON.parse(localStorage.getItem("Blogs Details")));
   var Result=blogTitle;
  
  function searchCat(val) {
- Result=JSON.parse(localStorage.getItem("Blogs Details")).filter((item)=>{
+  Result=JSON.parse(localStorage.getItem("Blogs Details")).filter((item)=>{
   return item.title.toLowerCase().includes(val.toLowerCase());
     })
     setBlogTitle(Result);
+    
+  console.log("Result",Result);
+
   }
   
-  console.log("Result",Result);
+
+
+
   console.log("Blog",blogTitle);
+
+
 
  
 
@@ -52,52 +72,31 @@ function App() {
 
 
 
-        <Routes>
-
 
     
+        <Routes>
           {!isLoggedIn ? (
             <>
               <Route path="/auth" element={<Auth />} />
-            
-              
-              
-             
-              {Result.length>0 ? (
-                 <>
-                  <Route path="/search" element={<BlogSearch arr={Result}/>} />
-                 </>
-              ):
-
-              (
-
-                <>
-                
-                <Route path="/" element={<Blogs />} />
-                </>
-              )
-              
-            }
-      
-                
- 
-
+              <Route path="/" element={<Blogs />} />
+              <Route path="/search" element={<BlogSearch arr={blogTitle}/>} />
 
             </>
           ) : (
             <>
-              <Route path="/" element={<Blogs arr={Result}/>} />
+              <Route path="/" element={<Blogs />} />
               <Route path="/blogs/add" element={<AddBlog />} />
-              <Route path="/myBlogs" element={<UserBlogs arr={Result} />} />
+              <Route path="/myBlogs" element={<UserBlogs/>} />
               <Route path="/myBlogs/:id" element={<BlogDetail />} />
             </>
           )}
-         
+        </Routes>
+
         
 
 
 
-        </Routes>
+      
 
 
       </main>

@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Blog from "./Blog";
+import App from "../App";
 
-function Blogs({ arr }) {
+function Blogs() {
   const [blogs, setBlogs] = useState();
   const sendRequest = async () => {
     const res = await axios
@@ -17,13 +18,27 @@ function Blogs({ arr }) {
   }, []);
 
   console.log("blogs data", blogs);
+
   
-  console.log("Pat",arr);
+
 
   return (
 
+    
+
+
+
+
+
     <div>
+
+
+
+
+
       
+
+
        {blogs &&
       blogs.map((blog, index) => (
         <Blog
@@ -35,13 +50,18 @@ function Blogs({ arr }) {
           userName={blog.userIp}
         />
       ))}
-        {localStorage.setItem("Blogs Details", JSON.stringify(blogs))}
+        {localStorage.setItem("Blogs Details", (JSON.stringify(blogs)))}
+  
 
-
-
- 
+     
 
   </div>
+
+
+
+
+
+
 
 
 

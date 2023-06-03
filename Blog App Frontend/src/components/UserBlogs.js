@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Blog from "./Blog";
 
-function UserBlogs() {
+function UserBlogs({arr}) {
   const [user, setUser] = useState();
   const id = localStorage.getItem("userId");
   const sendRequest = async () => {
@@ -19,6 +19,7 @@ function UserBlogs() {
 
   return (
     <div>
+   
       {" "}
       {user &&
         user.blogs &&
@@ -33,6 +34,12 @@ function UserBlogs() {
             userName={user.name}
           />
         ))}
+     
+     
+
+     
+     
+     
     </div>
   );
 }
