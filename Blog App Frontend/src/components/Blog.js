@@ -16,7 +16,7 @@ import {
 } from "@mui/icons-material";
 import axios from "axios";
 
-const Blog = ({ title, content, image, userName, isUser, id }) => {
+const Blog = ({ title, content, image, userName, isUser, id,position }) => {
   localStorage.setItem('UserName',userName)
   const navigate = useNavigate();
   const handleEdit = (event) => {
@@ -38,15 +38,18 @@ const Blog = ({ title, content, image, userName, isUser, id }) => {
 
   return (
     <div>
+     {position%2===0 ? (<>
+     
       <Card
         sx={{
           width: "50%",
           margin: "auto",
           marginTop: 2,
-          borderRadius:"25px"         ,
+          borderRadius:"50px"         ,
           padding: 2,
           boxShadow: "5px 5px 10px #ccc",
           ":hover": { boxShadow: "10px 10px 20px #abc" },
+          float:"left",
         }}
       >
         {isUser && (
@@ -61,7 +64,7 @@ const Blog = ({ title, content, image, userName, isUser, id }) => {
         )}
         <CardHeader
           avatar={
-            <Avatar sx={{ bgcolor: "red" }} aria-label="recipe">
+            <Avatar sx={{ bgcolor: "brown" }} aria-label="recipe">
               {userName && userName.charAt(0).toUpperCase()}
            
             </Avatar>
@@ -79,12 +82,82 @@ const Blog = ({ title, content, image, userName, isUser, id }) => {
           <hr />
           <br />
           <Typography variant="body2" color="text.secondary">
-            <h3 style={{fontWeight:"1000px"}}>{userName}</h3> {": "}
+            <h3>Post By:</h3>
+            <h3 style={{fontWeight:"1000px"}}>{userName}</h3> {"-> "}
            
             {content}
           </Typography>
         </CardContent>
       </Card>
+     
+     
+     
+     
+     
+     
+     </>):(<>
+     
+     
+      <Card
+        sx={{
+          width: "50%",
+          margin: "auto",
+          marginTop: 2,
+          borderRadius:"50px"         ,
+          padding: 2,
+          boxShadow: "5px 5px 10px #ccc",
+          ":hover": { boxShadow: "10px 10px 20px #abc" },
+          float:"right",
+        }}
+      >
+        {isUser && (
+          <Box display={"flex"}>
+            <IconButton onClick={handleEdit} sx={{ marginLeft: "auto" }}>
+              <ModeEditOutlineOutlined color="info" />
+            </IconButton>
+            <IconButton onClick={handleDelete}>
+              <DeleteForeverOutlined color="error" />
+            </IconButton>
+          </Box>
+        )}
+        <CardHeader
+          avatar={
+            <Avatar sx={{ bgcolor: "blue" }} aria-label="recipe">
+              {userName && userName.charAt(0).toUpperCase()}
+           
+            </Avatar>
+          }
+          title={title}
+          subheader=""
+        />
+        <CardMedia
+          component="img"
+          height="194"
+          image={image}
+          alt="Paella dish"
+        />
+        <CardContent>
+          <hr />
+          <br />
+          <Typography variant="body2" color="text.secondary">
+            <h3>Post By:</h3>
+            <h3 style={{fontWeight:"1000px"}}>{userName}</h3> {"-> "}
+           
+            {content}
+          </Typography>
+        </CardContent>
+      </Card>
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     </>)}
     </div>
   );
 };

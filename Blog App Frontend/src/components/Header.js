@@ -7,7 +7,8 @@ import {
   Tabs,
   Toolbar,
   Typography,
-  TextField
+  TextField,
+  ImageListItem
 } from "@mui/material";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -24,7 +25,7 @@ function Header(props) {
         position="sticky"
         sx={{
           background:
-            "linear-gradient(90deg, rgba(100,13,205,1) 0%, rgba(0,212,25,1) 100%)",
+            "linear-gradient(45deg, rgba(100,1,205,100) 0%, rgba(200,219,50,1) 100%)",
         }}
       >
         <Toolbar>
@@ -32,10 +33,12 @@ function Header(props) {
             component={Link}
             to="/"
             variant="h4"
-            style={{ textDecoration: "none", color: "white" }}
+            style={{width:"150px",}}
           >
-            Medium
+            <ImageListItem><img src="https://www.taipy.io/wp-content/uploads/2022/06/Medium.png" style={{borderRadius:"5px",height:"50px"}}/></ImageListItem>
+            
           </Typography>
+        
           {isLoggedIn && (
             <Box display="flex" marginLeft={"auto"}>
               <Tabs
@@ -53,10 +56,11 @@ function Header(props) {
           <Link to="/search"> <input
             type="search"
             className="form-control rounded "
-            placeholder="Search Category..."
+            placeholder="Search blogs ..."
             aria-label="Search"
             aria-describedby="search-addon"
             onKeyUp={(e)=>props.searchCat(e.target.value)}
+            style={{backgroundColor:"white",borderRadius:"25px",marginLeft:"40px",width:"200px",height:"40px"}}
           /></Link>
           <Box display="flex" marginLeft="auto">
          
@@ -66,18 +70,11 @@ function Header(props) {
                   LinkComponent={Link}
                   to="/auth"
                   variant="contained"
-                  sx={{ margin: 1, borderRadius: 10 }}
+                  sx={{ margin: 1 }}
                 >
-                  Sign In
+                  Login
                 </Button>
-                <Button
-                  LinkComponent={Link}
-                  to="/auth"
-                  variant="contained"
-                  sx={{ margin: 1, borderRadius: 10 }}
-                >
-                  Sign Up
-                </Button>
+               
               </>
             )}
           

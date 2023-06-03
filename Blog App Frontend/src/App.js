@@ -86,6 +86,7 @@ function App() {
             <>
               <Route path="/" element={<Blogs />} />
               <Route path="/blogs/add" element={<AddBlog />} />
+                <Route path="/search" element={<BlogSearch arr={blogTitle}/>} />
               <Route path="/myBlogs" element={<UserBlogs/>} />
               <Route path="/myBlogs/:id" element={<BlogDetail />} />
             </>

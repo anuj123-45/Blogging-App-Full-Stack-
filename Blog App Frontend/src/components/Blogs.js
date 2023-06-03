@@ -41,18 +41,22 @@ function Blogs() {
 
        {blogs &&
       blogs.map((blog, index) => (
-        <Blog
+        
+          <Blog
           id={blog._id}
           isUser={localStorage.getItem("userId") === blog.user._id}
           title={blog.title}
           content={blog.content}
           image={blog.image}
           userName={blog.userIp}
+          position={index}
         />
+          
+        
       ))}
         {localStorage.setItem("Blogs Details", (JSON.stringify(blogs)))}
   
-
+        
      
 
   </div>

@@ -36,6 +36,8 @@ const Auth = () => {
       )
       .catch((err) => {console.log(err)
      alert("Email Already Exists");
+
+  
       });
 
       console.log("Name",inputs.name);
@@ -44,6 +46,7 @@ const Auth = () => {
     const data = await res.data;
     return data;
   };
+
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -70,7 +73,8 @@ const Auth = () => {
           dispatch(authActions.signin());
         })
         .then(() => {
-         alert("Login Successfull !!!")
+        alert("Login Successfull !!!")
+    
           navigate("/");
         })
         .then((data) => console.log(data));
@@ -94,7 +98,7 @@ const Auth = () => {
           bgcolor={'secondary.main'}
         >
           <Typography variant="h3" padding={3} textAlign="center" color="white">
-            {isSignup ? "Sign Up" : "Sign In"}
+            {isSignup ? "Sign Up" : "Log In"}
           </Typography>
           {isSignup && (
 
@@ -138,6 +142,7 @@ const Auth = () => {
             variant="contained"
             sx={{ borderRadius: 3, marginTop: 3 }}
             color="info"
+          
           >
             {isSignup ? "Create Account" : "Sign In"}
           </Button>
