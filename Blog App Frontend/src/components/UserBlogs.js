@@ -32,6 +32,7 @@ function UserBlogs({arr}) {
             content={blog.content}
             image={blog.image}
             userName={user.name}
+            position={index}
           />
         ))}
      

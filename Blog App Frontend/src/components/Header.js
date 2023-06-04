@@ -25,7 +25,7 @@ function Header(props) {
         position="sticky"
         sx={{
           background:
-            "linear-gradient(45deg, rgba(100,1,205,100) 0%, rgba(200,219,50,1) 100%)",
+            "linear-gradient(45deg, rgba(100,1,205,100) 0%,  rgba(90, 34, 139, 1) 100%)",
         }}
       >
         <Toolbar>
@@ -53,15 +53,19 @@ function Header(props) {
             </Box>
           )}
          
-          <Link to="/search"> <input
+          <Link to="/search"> 
+            
+          <input
             type="search"
             className="form-control rounded "
             placeholder="Search blogs ..."
             aria-label="Search"
             aria-describedby="search-addon"
             onKeyUp={(e)=>props.searchCat(e.target.value)}
-            style={{backgroundColor:"white",borderRadius:"25px",marginLeft:"40px",width:"200px",height:"40px"}}
-          /></Link>
+            style={{backgroundColor:"white",borderRadius:"25px",width:"200px",height:"40px",marginLeft:"50px"}}
+          />
+            
+          </Link>
           <Box display="flex" marginLeft="auto">
          
             {!isLoggedIn && (
@@ -95,7 +99,8 @@ function Header(props) {
                 LinkComponent={Link}
                 to="/"
                 variant="contained"
-                sx={{ margin: 1, borderRadius: 10 }}
+                sx={{ margin: 1}}
+                style={{backgroundColor:"#f9b42d" }}
               >
                 Log Out
               </Button>

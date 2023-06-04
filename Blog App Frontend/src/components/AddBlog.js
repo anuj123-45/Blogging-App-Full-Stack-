@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Box, InputLabel, TextField, Typography, Button } from "@mui/material";
 
+
+
 const labelStyle = { mb: 1, mt: 2, fontSize: "24px", fontWeight: "bold" };
 
 const AddBlog = () => {
@@ -30,7 +32,7 @@ const AddBlog = () => {
         userIp:localStorage.getItem("userImp"),
        
       })
-      .catch((err) => console.log(err));
+      .catch((err) => alert(err));
 
     const data = await res.data;
     return data;
@@ -57,7 +59,7 @@ const AddBlog = () => {
           display="flex"
           flexDirection={"column"}
           width={"70%"}
-          style={{background:"white"}}
+          style={{background:"purple"}}
         >
           <Typography
             fontWeight={"bold"}
@@ -65,8 +67,9 @@ const AddBlog = () => {
             color="gray"
             variant="h3"
             textAlign={"center"}
+          
           >
-            Create your Blog
+            Create  Blog
           </Typography>
           <InputLabel sx={labelStyle}>Title</InputLabel>
           <TextField
@@ -75,27 +78,35 @@ const AddBlog = () => {
             value={inputs.title}
             margin="normal"
             variant="outlined"
+            style={{background:"white"}}
+            required={true}
           />
           <InputLabel sx={labelStyle}>Content</InputLabel>
-          <TextField
+          <textarea
             name="content"
             onChange={handleChange}
             value={inputs.content}
             margin="normal"
             variant="outlined"
+            style={{background:"white",fontSize:"20px"}}
+            rows={10}
+            required={true}
           />
-          <InputLabel sx={labelStyle}>ImageURL</InputLabel>
+          <InputLabel sx={labelStyle}>URL</InputLabel>
           <TextField
             name="image"
             onChange={handleChange}
             value={inputs.image}
             margin="normal"
             variant="outlined"
+            style={{background:"white"}}
+            required={true}
+            
           />
           <Button
-            sx={{ mt: 2, borderRadius: 4 }}
+            sx={{ mt: 2, borderRadius: 4,width:"200px",margin:"auto" }}
             variant="contained"
-            color="warning"
+        
             type="submit"
           >
             Submit Blog

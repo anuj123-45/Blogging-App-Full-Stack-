@@ -60,7 +60,7 @@ const BlogSearch = ({ arr }) => {
 
       </>) : (<>
 
-        <h1>No results found</h1>
+        <h1 style={{color:"black"}}>No results found</h1>
 
       </>)}
 

@@ -78,10 +78,10 @@ const Blog = ({ title, content, image, userName, isUser, id,position }) => {
           image={image}
           alt="Paella dish"
         />
-        <CardContent>
+        <CardContent style={{height:"100px",overflow:"scroll"}}>
           <hr />
           <br />
-          <Typography variant="body2" color="text.secondary">
+          <Typography variant="body2" color="text.secondary" style={{textAlign:"justify"}}>
             <h3>Post By:</h3>
             <h3 style={{fontWeight:"1000px"}}>{userName}</h3> {"-> "}
            
@@ -136,10 +136,10 @@ const Blog = ({ title, content, image, userName, isUser, id,position }) => {
           image={image}
           alt="Paella dish"
         />
-        <CardContent>
+        <CardContent style={{height:"100px",overflow:"scroll"}}>
           <hr />
           <br />
-          <Typography variant="body2" color="text.secondary">
+          <Typography variant="body2" color="text.secondary" style={{textAlign:"justify"}}>
             <h3>Post By:</h3>
             <h3 style={{fontWeight:"1000px"}}>{userName}</h3> {"-> "}
            

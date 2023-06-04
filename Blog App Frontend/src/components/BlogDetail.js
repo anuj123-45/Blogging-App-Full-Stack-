@@ -73,6 +73,7 @@ function BlogDetail() {
             display="flex"
             flexDirection={"column"}
             width={"70%"}
+            style={{background:"aqua"}}
           >
             <Typography
               fontWeight={"bold"}
@@ -81,7 +82,7 @@ function BlogDetail() {
               variant="h3"
               textAlign={"center"}
             >
-              Create your Blog
+              Create Blog
             </Typography>
             <InputLabel sx={labelStyle}>Title</InputLabel>
             <TextField
@@ -90,14 +91,17 @@ function BlogDetail() {
               value={inputs.title}
               margin="normal"
               variant="outlined"
+              style={{background:"white"}}
             />
             <InputLabel sx={labelStyle}>Content</InputLabel>
-            <TextField
+            <textarea
               name="content"
               onChange={handleChange}
               value={inputs.content}
               margin="normal"
               variant="outlined"
+              style={{background:"white"}}
+              rows={10}
             />
             <InputLabel sx={labelStyle}>ImageURL</InputLabel>
             <TextField
@@ -106,11 +110,12 @@ function BlogDetail() {
               value={inputs.image}
               margin="normal"
               variant="outlined"
+              style={{background:"white"}}
             />
             <Button
-              sx={{ mt: 2, borderRadius: 4 }}
+              sx={{ mt: 2, borderRadius: 4 ,width:"200px",margin:"auto" }}
               variant="contained"
-              color="warning"
+    
               type="submit"
             >
               Submit Blog
