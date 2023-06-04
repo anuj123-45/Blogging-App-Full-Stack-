@@ -46,9 +46,10 @@ function Header(props) {
                 value={value}
                 onChange={(event, val) => setValue(val)}
               >
+                     <Tab LinkComponent={Link} to="/blogs/add" label="Create Blog " />
                 <Tab LinkComponent={Link} to="/" label="All Blogs" />
                 <Tab LinkComponent={Link} to="/myBlogs" label="My Blogs " />
-                <Tab LinkComponent={Link} to="/blogs/add" label="Create Blogs " />
+           
               </Tabs>
             </Box>
           )}

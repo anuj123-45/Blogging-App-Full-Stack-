@@ -20,7 +20,7 @@ function UserBlogs({arr}) {
   return (
     <div>
    
-      {" "}
+   {" "}
       {user &&
         user.blogs &&
         user.blogs.map((blog, index) => (
@@ -35,12 +35,7 @@ function UserBlogs({arr}) {
             position={index}
           />
         ))}
-     
-     
-
-     
-     
-     
+    
     </div>
   );
 }

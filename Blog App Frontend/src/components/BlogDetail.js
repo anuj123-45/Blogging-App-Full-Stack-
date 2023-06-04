@@ -73,7 +73,7 @@ function BlogDetail() {
             display="flex"
             flexDirection={"column"}
             width={"70%"}
-            style={{background:"aqua"}}
+            style={{background:"#E59866"}}
           >
             <Typography
               fontWeight={"bold"}

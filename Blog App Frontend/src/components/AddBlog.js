@@ -59,12 +59,12 @@ const AddBlog = () => {
           display="flex"
           flexDirection={"column"}
           width={"70%"}
-          style={{background:"purple"}}
+          style={{background:"rgb(6, 184, 137)"}}
         >
           <Typography
             fontWeight={"bold"}
             padding={3}
-            color="gray"
+            color="white"
             variant="h3"
             textAlign={"center"}
           
@@ -72,15 +72,18 @@ const AddBlog = () => {
             Create  Blog
           </Typography>
           <InputLabel sx={labelStyle}>Title</InputLabel>
-          <TextField
+     
+      <TextField
             name="title"
             onChange={handleChange}
             value={inputs.title}
             margin="normal"
-            variant="outlined"
+            
             style={{background:"white"}}
+          
             required={true}
           />
+      
           <InputLabel sx={labelStyle}>Content</InputLabel>
           <textarea
             name="content"
