@@ -9,17 +9,16 @@ import {
   CardMedia,
   Box,
   IconButton,
+  Grid,
 } from "@mui/material";
-import {
-  DeleteForeverOutlined,
-  ModeEditOutlineOutlined,
-} from "@mui/icons-material";
+import { DeleteForeverOutlined, ModeEditOutlineOutlined } from "@mui/icons-material";
 import axios from "axios";
 
-const Blog = ({ title, content, image, userName, isUser, id,position }) => {
-  localStorage.setItem('UserName',userName)
+const Blog = ({ title, content, image, userName, isUser, id, position }) => {
+  localStorage.setItem("UserName", userName);
   const navigate = useNavigate();
-  const handleEdit = (event) => {
+
+  const handleEdit = () => {
     navigate(`/myBlogs/${id}`);
   };
 
@@ -27,9 +26,7 @@ const Blog = ({ title, content, image, userName, isUser, id,position }) => {
     const res = await axios
       .delete(`http://localhost:8000/api/blog/${id}`)
       .catch((err) => console.log(err));
- 
-    const data = res.data;
-    return data;
+    return res.data;
   };
 
   const handleDelete = () => {
@@ -37,133 +34,85 @@ const Blog = ({ title, content, image, userName, isUser, id,position }) => {
   };
 
   return (
-    <div>
-     {position%2===0 ? (<>
-     
-      <Card
+    <Grid container justifyContent="center" alignItems="center" sx={{ marginY: 2 }}>
+      <Grid
+        item
+        xs={12}
+        sm={10}
+        md={8}
+        lg={8}
         sx={{
-          width: "50%",
-          margin: "auto",
-          marginTop: 2,
-          backgroundColor:"#D7BDE2 ",
-          borderRadius:"50px"         ,
-          padding: 2,
-          boxShadow: "5px 5px 10px #ccc",
-          ":hover": { boxShadow: "10px 10px 20px #abc" },
-          float:"left",
-        
-        }}
-        
-      >
-        {isUser && (
-          <Box display={"flex"} gap={3}>
-            <IconButton onClick={handleEdit} sx={{ marginLeft: "auto" ,backgroundColor:"aqua"}}>
-              <ModeEditOutlineOutlined color="black" />
-            </IconButton>
-            <IconButton onClick={handleDelete} sx={{background:"lightgreen"}}>
-              <DeleteForeverOutlined color="error" />
-            </IconButton>
-          </Box>
-        )}
-        <CardHeader
-          avatar={
-            <Avatar sx={{ bgcolor: "brown" }} aria-label="recipe">
-              {userName && userName.charAt(0).toUpperCase()}
-           
-            </Avatar>
-          }
-          title={<b style={{fontSize:"25px"}}>{title}</b>}
-          subheader=""
-        />
-        <CardMedia
-          component="img"
-          height="194"
-          image={image}
-          alt="Paella dish"
-        />
-        <CardContent style={{height:"100px",overflow:"scroll",overflowX:"hidden"}}>
-          <hr />
-          <br />
-          <Typography variant="body2" color="text.secondary" style={{textAlign:"justify"}}>
-            <h3>Post By:</h3>
-            <h3 style={{fontWeight:"1000px"}}>{userName}</h3> {"-> "}
-           
-            {content}
-          </Typography>
-        </CardContent>
-      </Card>
-     
-     
-     
-     
-     
-     
-     </>):(<>
-     
-     
-      <Card
-        sx={{
-          width: "50%",
-          margin: "auto",
-          marginTop: 2,
-          borderRadius:"50px"         ,
-          backgroundColor:"#2980B9",
-          padding: 2,
-          boxShadow: "5px 5px 10px #ccc", 
-          ":hover": { boxShadow: "10px 10px 20px #abc" },
-          float:"right",
+          display: "flex",
         }}
       >
-        {isUser && (
-          <Box display={"flex"} gap={3}>
-            <IconButton onClick={handleEdit} sx={{ marginLeft: "auto" ,backgroundColor:"yellow"}}>
-              <ModeEditOutlineOutlined color="warning" />
-            </IconButton>
-            <IconButton onClick={handleDelete} sx={{backgroundColor:"#D7BDE2 "}}>
-              <DeleteForeverOutlined color="error" />
-            </IconButton>
-          </Box>
-        )}
-        <CardHeader
-          avatar={
-            <Avatar sx={{ bgcolor: "#2ECC71 " }} aria-label="recipe">
-              {userName && userName.charAt(0).toUpperCase()}
-           
-            </Avatar>
-          }
-          title={<b style={{fontSize:"25px"}}>{title}</b>}
-          subheader=""
-        />
-        <CardMedia
-          component="img"
-          height="194"
-          image={image}
-          alt="Paella dish"
-          aria-required={true}
-        />
-        <CardContent style={{height:"100px",overflow:"scroll",overflowX:"hidden"}}>
-          <hr />
-          <br />
-          <Typography variant="body2" color="text.secondary" style={{textAlign:"justify",color:"white"}}>
-            <h3>Post By:</h3>
-            <h3 style={{fontWeight:"1000px"}}>{userName}</h3> {"-> "}
-           
-            {content}
-          </Typography>
-        </CardContent>
-      </Card>
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     </>)}
-    </div>
+        <Card
+          sx={{
+            width: "100%",
+            maxWidth: { xs: "100%", sm: 600, lg: "900px" }, // Wider for large screens
+            backgroundColor: position % 2 === 0 ? "#D7BDE2" : "#2980B9",
+            borderRadius: "20px",
+            padding: 2,
+            boxShadow: "5px 5px 10px #ccc",
+            ":hover": { boxShadow: "10px 10px 20px #abc" },
+          }}
+        >
+          {isUser && (
+            <Box display="flex" justifyContent="flex-end" gap={1}>
+              <IconButton
+                onClick={handleEdit}
+                sx={{ backgroundColor: position % 2 === 0 ? "aqua" : "yellow" }}
+              >
+                <ModeEditOutlineOutlined />
+              </IconButton>
+              <IconButton
+                onClick={handleDelete}
+                sx={{
+                  backgroundColor: position % 2 === 0 ? "lightgreen" : "#D7BDE2",
+                }}
+              >
+                <DeleteForeverOutlined color="error" />
+              </IconButton>
+            </Box>
+          )}
+          <CardHeader
+            avatar={
+              <Avatar
+                sx={{
+                  bgcolor: position % 2 === 0 ? "brown" : "#2ECC71",
+                  color: "#fff",
+                }}
+              >
+                {userName && userName.charAt(0).toUpperCase()}
+              </Avatar>
+            }
+            title={<Typography variant="h6">{title}</Typography>}
+          />
+          <CardMedia
+            component="img"
+            height="300" // Adjusted height for a wider look
+            image={image}
+            alt={title}
+            sx={{
+              borderRadius: "10px",
+              objectFit: "cover",
+            }}
+          />
+          <CardContent
+            sx={{
+              height: { xs: 120, sm: 150 }, // Adjusted height for content
+              overflowY: "auto",
+            }}
+          >
+            <Typography variant="subtitle2" color="text.primary">
+              <strong>Post By:</strong> {userName}
+            </Typography>
+            <Typography variant="body2" color="text.secondary" textAlign="justify">
+              {content}
+            </Typography>
+          </CardContent>
+        </Card>
+      </Grid>
+    </Grid>
   );
 };
 

@@ -32,9 +32,7 @@ const Auth = () => {
         email: inputs.email,
         password: inputs.password,
       }
-   
-      )
-      .catch((err) => {console.log(err)
+   ).catch((err) => {console.log(err)
      alert("Email Already Exists");
 
   

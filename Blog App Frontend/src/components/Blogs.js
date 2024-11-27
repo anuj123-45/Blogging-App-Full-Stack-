@@ -1,46 +1,20 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Blog from "./Blog";
-import App from "../App";
 
-function Blogs() {
-  const [blogs, setBlogs] = useState();
-  const sendRequest = async () => {
-    const res = await axios
-      .get("http://localhost:8000/api/blog")
-      .catch((err) => console.log(err));
-
-    const data = await res.data;
-    return data;
-  };
+function Blogs({search}) {
+  const [blogs, setBlogs] = useState([]);
   useEffect(() => {
-    sendRequest().then((data) => setBlogs(data.blogs));
+   const reqBlogs=async()=>{
+    const getBlogs=await axios.get('http://localhost:8000/api/blog')
+    setBlogs(getBlogs.data.blogs)
+    }
+    reqBlogs()
   }, []);
-
-  console.log("blogs data", blogs);
-
-  
-
-
   return (
-
-    
-
-
-
-
-
+    <>
     <div>
-
-
-
-
-
-      
-
-
-       {blogs &&
-      blogs.map((blog, index) => (
+       {blogs && blogs.filter((blog)=>blog.title.toLowerCase().includes(search.toLowerCase())).map((blog, index) => (
         
           <Blog
           id={blog._id}
@@ -55,22 +29,8 @@ function Blogs() {
         
       ))}
         {localStorage.setItem("Blogs Details", (JSON.stringify(blogs)))}
-  
-        
-     
-
   </div>
-
-
-
-
-
-
-
-
-
-
-
+    </>
 
   );
 }
